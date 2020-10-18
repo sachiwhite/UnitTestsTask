@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -55,6 +57,12 @@ namespace UnitTestProject1
         {
             Assert.Fail();
             
+        }
+        [TearDown]
+        public void TearDown()
+        {
+            File.WriteAllLines($"{TestContext.CurrentContext.Test.FullName}.txt", new String []{TestContext.CurrentContext.Test.FullName,
+                TestContext.CurrentContext.Result.Outcome.ToString() });
         }
 
 
